@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
     'diagram',
+    'detail',
 ]
 
 MIDDLEWARE = [
@@ -81,7 +82,7 @@ WSGI_APPLICATION = 'proj.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Analyser',
+        'NAME': 'Analyser1',
         'USER': 'postgres',
         'PASSWORD': 'artem',
         'HOST': 'localhost',

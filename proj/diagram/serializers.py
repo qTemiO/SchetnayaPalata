@@ -1,16 +1,44 @@
 from rest_framework import serializers
 
-from .models import Diagram, Region
+from .models import (
+    Problem,
+    Ministry,
+    ProblemCluster,
+    Diagram, 
+    )
+
+class ProblemSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Problem
+        fields = ['name']
+
+class MinistrySerializer(serializers.ModelSerializer):
+    problems = ProblemSerializer(many=True)
+
+    class Meta:
+        model = Ministry
+        fields = ['name', 'problems', ]
+
+class ProblemClusterSerializer(serializers.ModelSerializer):
+    ministries = MinistrySerializer(many=True)
+
+    class Meta:
+        model =  ProblemCluster
+        fields = ['name', 'ministries', ]
 
 class DiagramSerializer(serializers.ModelSerializer):
+    problemcluster = ProblemClusterSerializer()
 
     class Meta:
         model = Diagram
-        fields = ['value', 'problem',]
+        fields = ['value', 'problemcluster',]
 
-class RegionSerializer(serializers.ModelSerializer):
-    diagram = DiagramSerializer(many=True)
+"""
+class ServicesSerializer(serializers.ModelSerializer):
+    problems = ProblemSerializer(many=True)
 
     class Meta:
-        model = Region
-        fields = ['name', 'diagram', ]
+        model = Services
+        fields = ['name', 'problems']
+"""

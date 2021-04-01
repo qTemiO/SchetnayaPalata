@@ -1,0 +1,2378 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.5
+-- Dumped by pg_dump version 12.5
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.auth_group (
+    id integer NOT NULL,
+    name character varying(150) NOT NULL
+);
+
+
+ALTER TABLE public.auth_group OWNER TO postgres;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.auth_group_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_id_seq OWNER TO postgres;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.auth_group_id_seq OWNED BY public.auth_group.id;
+
+
+--
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.auth_group_permissions (
+    id integer NOT NULL,
+    group_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_group_permissions OWNER TO postgres;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.auth_group_permissions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_permissions_id_seq OWNER TO postgres;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.auth_group_permissions_id_seq OWNED BY public.auth_group_permissions.id;
+
+
+--
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.auth_permission (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    content_type_id integer NOT NULL,
+    codename character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.auth_permission OWNER TO postgres;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.auth_permission_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_permission_id_seq OWNER TO postgres;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.auth_permission_id_seq OWNED BY public.auth_permission.id;
+
+
+--
+-- Name: auth_user; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.auth_user (
+    id integer NOT NULL,
+    password character varying(128) NOT NULL,
+    last_login timestamp with time zone,
+    is_superuser boolean NOT NULL,
+    username character varying(150) NOT NULL,
+    first_name character varying(150) NOT NULL,
+    last_name character varying(150) NOT NULL,
+    email character varying(254) NOT NULL,
+    is_staff boolean NOT NULL,
+    is_active boolean NOT NULL,
+    date_joined timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.auth_user OWNER TO postgres;
+
+--
+-- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.auth_user_groups (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    group_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_user_groups OWNER TO postgres;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.auth_user_groups_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_groups_id_seq OWNER TO postgres;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.auth_user_groups_id_seq OWNED BY public.auth_user_groups.id;
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.auth_user_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_id_seq OWNER TO postgres;
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.auth_user_id_seq OWNED BY public.auth_user.id;
+
+
+--
+-- Name: auth_user_user_permissions; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.auth_user_user_permissions (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_user_user_permissions OWNER TO postgres;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.auth_user_user_permissions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_user_permissions_id_seq OWNER TO postgres;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.auth_user_user_permissions_id_seq OWNED BY public.auth_user_user_permissions.id;
+
+
+--
+-- Name: detail_ministries; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.detail_ministries (
+    id integer NOT NULL,
+    min_name character varying(200) NOT NULL
+);
+
+
+ALTER TABLE public.detail_ministries OWNER TO postgres;
+
+--
+-- Name: detail_ministries_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.detail_ministries_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.detail_ministries_id_seq OWNER TO postgres;
+
+--
+-- Name: detail_ministries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.detail_ministries_id_seq OWNED BY public.detail_ministries.id;
+
+
+--
+-- Name: detail_ministries_services; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.detail_ministries_services (
+    id integer NOT NULL,
+    ministries_id integer NOT NULL,
+    services_id integer NOT NULL
+);
+
+
+ALTER TABLE public.detail_ministries_services OWNER TO postgres;
+
+--
+-- Name: detail_ministries_services_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.detail_ministries_services_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.detail_ministries_services_id_seq OWNER TO postgres;
+
+--
+-- Name: detail_ministries_services_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.detail_ministries_services_id_seq OWNED BY public.detail_ministries_services.id;
+
+
+--
+-- Name: detail_problem; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.detail_problem (
+    id integer NOT NULL,
+    prob_name character varying(200) NOT NULL
+);
+
+
+ALTER TABLE public.detail_problem OWNER TO postgres;
+
+--
+-- Name: detail_problem_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.detail_problem_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.detail_problem_id_seq OWNER TO postgres;
+
+--
+-- Name: detail_problem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.detail_problem_id_seq OWNED BY public.detail_problem.id;
+
+
+--
+-- Name: detail_problem_ministries; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.detail_problem_ministries (
+    id integer NOT NULL,
+    problem_id integer NOT NULL,
+    ministries_id integer NOT NULL
+);
+
+
+ALTER TABLE public.detail_problem_ministries OWNER TO postgres;
+
+--
+-- Name: detail_problem_ministries_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.detail_problem_ministries_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.detail_problem_ministries_id_seq OWNER TO postgres;
+
+--
+-- Name: detail_problem_ministries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.detail_problem_ministries_id_seq OWNED BY public.detail_problem_ministries.id;
+
+
+--
+-- Name: detail_region; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.detail_region (
+    id integer NOT NULL,
+    reg_name character varying(200) NOT NULL
+);
+
+
+ALTER TABLE public.detail_region OWNER TO postgres;
+
+--
+-- Name: detail_region_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.detail_region_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.detail_region_id_seq OWNER TO postgres;
+
+--
+-- Name: detail_region_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.detail_region_id_seq OWNED BY public.detail_region.id;
+
+
+--
+-- Name: detail_region_problems; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.detail_region_problems (
+    id integer NOT NULL,
+    region_id integer NOT NULL,
+    problem_id integer NOT NULL
+);
+
+
+ALTER TABLE public.detail_region_problems OWNER TO postgres;
+
+--
+-- Name: detail_region_problems_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.detail_region_problems_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.detail_region_problems_id_seq OWNER TO postgres;
+
+--
+-- Name: detail_region_problems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.detail_region_problems_id_seq OWNED BY public.detail_region_problems.id;
+
+
+--
+-- Name: detail_services; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.detail_services (
+    id integer NOT NULL,
+    serv_name character varying(200) NOT NULL
+);
+
+
+ALTER TABLE public.detail_services OWNER TO postgres;
+
+--
+-- Name: detail_services_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.detail_services_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.detail_services_id_seq OWNER TO postgres;
+
+--
+-- Name: detail_services_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.detail_services_id_seq OWNED BY public.detail_services.id;
+
+
+--
+-- Name: diagram_diagram; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.diagram_diagram (
+    id integer NOT NULL
+);
+
+
+ALTER TABLE public.diagram_diagram OWNER TO postgres;
+
+--
+-- Name: diagram_diagram_columns; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.diagram_diagram_columns (
+    id integer NOT NULL,
+    diagram_id integer NOT NULL,
+    diagramelement_id integer NOT NULL
+);
+
+
+ALTER TABLE public.diagram_diagram_columns OWNER TO postgres;
+
+--
+-- Name: diagram_diagram_columns_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.diagram_diagram_columns_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.diagram_diagram_columns_id_seq OWNER TO postgres;
+
+--
+-- Name: diagram_diagram_columns_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.diagram_diagram_columns_id_seq OWNED BY public.diagram_diagram_columns.id;
+
+
+--
+-- Name: diagram_diagram_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.diagram_diagram_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.diagram_diagram_id_seq OWNER TO postgres;
+
+--
+-- Name: diagram_diagram_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.diagram_diagram_id_seq OWNED BY public.diagram_diagram.id;
+
+
+--
+-- Name: diagram_diagramelement; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.diagram_diagramelement (
+    id integer NOT NULL,
+    value double precision NOT NULL,
+    problemcluster_id integer NOT NULL
+);
+
+
+ALTER TABLE public.diagram_diagramelement OWNER TO postgres;
+
+--
+-- Name: diagram_diagramelement_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.diagram_diagramelement_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.diagram_diagramelement_id_seq OWNER TO postgres;
+
+--
+-- Name: diagram_diagramelement_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.diagram_diagramelement_id_seq OWNED BY public.diagram_diagramelement.id;
+
+
+--
+-- Name: diagram_ministry; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.diagram_ministry (
+    id integer NOT NULL,
+    min_name character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public.diagram_ministry OWNER TO postgres;
+
+--
+-- Name: diagram_ministry_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.diagram_ministry_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.diagram_ministry_id_seq OWNER TO postgres;
+
+--
+-- Name: diagram_ministry_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.diagram_ministry_id_seq OWNED BY public.diagram_ministry.id;
+
+
+--
+-- Name: diagram_ministry_problems; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.diagram_ministry_problems (
+    id integer NOT NULL,
+    ministry_id integer NOT NULL,
+    problem_id integer NOT NULL
+);
+
+
+ALTER TABLE public.diagram_ministry_problems OWNER TO postgres;
+
+--
+-- Name: diagram_ministry_problems_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.diagram_ministry_problems_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.diagram_ministry_problems_id_seq OWNER TO postgres;
+
+--
+-- Name: diagram_ministry_problems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.diagram_ministry_problems_id_seq OWNED BY public.diagram_ministry_problems.id;
+
+
+--
+-- Name: diagram_problem; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.diagram_problem (
+    id integer NOT NULL,
+    prob_name character varying(300) NOT NULL
+);
+
+
+ALTER TABLE public.diagram_problem OWNER TO postgres;
+
+--
+-- Name: diagram_problem_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.diagram_problem_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.diagram_problem_id_seq OWNER TO postgres;
+
+--
+-- Name: diagram_problem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.diagram_problem_id_seq OWNED BY public.diagram_problem.id;
+
+
+--
+-- Name: diagram_problemcluster; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.diagram_problemcluster (
+    id integer NOT NULL,
+    "probClus_name" character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.diagram_problemcluster OWNER TO postgres;
+
+--
+-- Name: diagram_problemcluster_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.diagram_problemcluster_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.diagram_problemcluster_id_seq OWNER TO postgres;
+
+--
+-- Name: diagram_problemcluster_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.diagram_problemcluster_id_seq OWNED BY public.diagram_problemcluster.id;
+
+
+--
+-- Name: diagram_problemcluster_ministries; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.diagram_problemcluster_ministries (
+    id integer NOT NULL,
+    problemcluster_id integer NOT NULL,
+    ministry_id integer NOT NULL
+);
+
+
+ALTER TABLE public.diagram_problemcluster_ministries OWNER TO postgres;
+
+--
+-- Name: diagram_problemcluster_ministries_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.diagram_problemcluster_ministries_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.diagram_problemcluster_ministries_id_seq OWNER TO postgres;
+
+--
+-- Name: diagram_problemcluster_ministries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.diagram_problemcluster_ministries_id_seq OWNED BY public.diagram_problemcluster_ministries.id;
+
+
+--
+-- Name: django_admin_log; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.django_admin_log (
+    id integer NOT NULL,
+    action_time timestamp with time zone NOT NULL,
+    object_id text,
+    object_repr character varying(200) NOT NULL,
+    action_flag smallint NOT NULL,
+    change_message text NOT NULL,
+    content_type_id integer,
+    user_id integer NOT NULL,
+    CONSTRAINT django_admin_log_action_flag_check CHECK ((action_flag >= 0))
+);
+
+
+ALTER TABLE public.django_admin_log OWNER TO postgres;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.django_admin_log_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_admin_log_id_seq OWNER TO postgres;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.django_admin_log_id_seq OWNED BY public.django_admin_log.id;
+
+
+--
+-- Name: django_content_type; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.django_content_type (
+    id integer NOT NULL,
+    app_label character varying(100) NOT NULL,
+    model character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.django_content_type OWNER TO postgres;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.django_content_type_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_content_type_id_seq OWNER TO postgres;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.django_content_type_id_seq OWNED BY public.django_content_type.id;
+
+
+--
+-- Name: django_migrations; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.django_migrations (
+    id integer NOT NULL,
+    app character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    applied timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_migrations OWNER TO postgres;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.django_migrations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_migrations_id_seq OWNER TO postgres;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.django_migrations_id_seq OWNED BY public.django_migrations.id;
+
+
+--
+-- Name: django_session; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.django_session (
+    session_key character varying(40) NOT NULL,
+    session_data text NOT NULL,
+    expire_date timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_session OWNER TO postgres;
+
+--
+-- Name: auth_group id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_group ALTER COLUMN id SET DEFAULT nextval('public.auth_group_id_seq'::regclass);
+
+
+--
+-- Name: auth_group_permissions id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_group_permissions_id_seq'::regclass);
+
+
+--
+-- Name: auth_permission id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_permission ALTER COLUMN id SET DEFAULT nextval('public.auth_permission_id_seq'::regclass);
+
+
+--
+-- Name: auth_user id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user ALTER COLUMN id SET DEFAULT nextval('public.auth_user_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_groups id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_groups ALTER COLUMN id SET DEFAULT nextval('public.auth_user_groups_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_user_permissions id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_user_user_permissions_id_seq'::regclass);
+
+
+--
+-- Name: detail_ministries id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detail_ministries ALTER COLUMN id SET DEFAULT nextval('public.detail_ministries_id_seq'::regclass);
+
+
+--
+-- Name: detail_ministries_services id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detail_ministries_services ALTER COLUMN id SET DEFAULT nextval('public.detail_ministries_services_id_seq'::regclass);
+
+
+--
+-- Name: detail_problem id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detail_problem ALTER COLUMN id SET DEFAULT nextval('public.detail_problem_id_seq'::regclass);
+
+
+--
+-- Name: detail_problem_ministries id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detail_problem_ministries ALTER COLUMN id SET DEFAULT nextval('public.detail_problem_ministries_id_seq'::regclass);
+
+
+--
+-- Name: detail_region id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detail_region ALTER COLUMN id SET DEFAULT nextval('public.detail_region_id_seq'::regclass);
+
+
+--
+-- Name: detail_region_problems id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detail_region_problems ALTER COLUMN id SET DEFAULT nextval('public.detail_region_problems_id_seq'::regclass);
+
+
+--
+-- Name: detail_services id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detail_services ALTER COLUMN id SET DEFAULT nextval('public.detail_services_id_seq'::regclass);
+
+
+--
+-- Name: diagram_diagram id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_diagram ALTER COLUMN id SET DEFAULT nextval('public.diagram_diagram_id_seq'::regclass);
+
+
+--
+-- Name: diagram_diagram_columns id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_diagram_columns ALTER COLUMN id SET DEFAULT nextval('public.diagram_diagram_columns_id_seq'::regclass);
+
+
+--
+-- Name: diagram_diagramelement id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_diagramelement ALTER COLUMN id SET DEFAULT nextval('public.diagram_diagramelement_id_seq'::regclass);
+
+
+--
+-- Name: diagram_ministry id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_ministry ALTER COLUMN id SET DEFAULT nextval('public.diagram_ministry_id_seq'::regclass);
+
+
+--
+-- Name: diagram_ministry_problems id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_ministry_problems ALTER COLUMN id SET DEFAULT nextval('public.diagram_ministry_problems_id_seq'::regclass);
+
+
+--
+-- Name: diagram_problem id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_problem ALTER COLUMN id SET DEFAULT nextval('public.diagram_problem_id_seq'::regclass);
+
+
+--
+-- Name: diagram_problemcluster id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_problemcluster ALTER COLUMN id SET DEFAULT nextval('public.diagram_problemcluster_id_seq'::regclass);
+
+
+--
+-- Name: diagram_problemcluster_ministries id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_problemcluster_ministries ALTER COLUMN id SET DEFAULT nextval('public.diagram_problemcluster_ministries_id_seq'::regclass);
+
+
+--
+-- Name: django_admin_log id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_admin_log ALTER COLUMN id SET DEFAULT nextval('public.django_admin_log_id_seq'::regclass);
+
+
+--
+-- Name: django_content_type id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_content_type ALTER COLUMN id SET DEFAULT nextval('public.django_content_type_id_seq'::regclass);
+
+
+--
+-- Name: django_migrations id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('public.django_migrations_id_seq'::regclass);
+
+
+--
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.auth_group (id, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.auth_group_permissions (id, group_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
+1	Can add log entry	1	add_logentry
+2	Can change log entry	1	change_logentry
+3	Can delete log entry	1	delete_logentry
+4	Can view log entry	1	view_logentry
+5	Can add permission	2	add_permission
+6	Can change permission	2	change_permission
+7	Can delete permission	2	delete_permission
+8	Can view permission	2	view_permission
+9	Can add group	3	add_group
+10	Can change group	3	change_group
+11	Can delete group	3	delete_group
+12	Can view group	3	view_group
+13	Can add user	4	add_user
+14	Can change user	4	change_user
+15	Can delete user	4	delete_user
+16	Can view user	4	view_user
+17	Can add content type	5	add_contenttype
+18	Can change content type	5	change_contenttype
+19	Can delete content type	5	delete_contenttype
+20	Can view content type	5	view_contenttype
+21	Can add session	6	add_session
+22	Can change session	6	change_session
+23	Can delete session	6	delete_session
+24	Can view session	6	view_session
+25	Can add Диаграмма	7	add_diagram
+26	Can change Диаграмма	7	change_diagram
+27	Can delete Диаграмма	7	delete_diagram
+28	Can view Диаграмма	7	view_diagram
+29	Can add Ведомство	8	add_ministry
+30	Can change Ведомство	8	change_ministry
+31	Can delete Ведомство	8	delete_ministry
+32	Can view Ведомство	8	view_ministry
+33	Can add Проблема	9	add_problem
+34	Can change Проблема	9	change_problem
+35	Can delete Проблема	9	delete_problem
+36	Can view Проблема	9	view_problem
+37	Can add Категория проблем	10	add_problemcluster
+38	Can change Категория проблем	10	change_problemcluster
+39	Can delete Категория проблем	10	delete_problemcluster
+40	Can view Категория проблем	10	view_problemcluster
+41	Can add Ведомство	11	add_ministries
+42	Can change Ведомство	11	change_ministries
+43	Can delete Ведомство	11	delete_ministries
+44	Can view Ведомство	11	view_ministries
+45	Can add Проблема	12	add_problem
+46	Can change Проблема	12	change_problem
+47	Can delete Проблема	12	delete_problem
+48	Can view Проблема	12	view_problem
+49	Can add Госуслуга	13	add_services
+50	Can change Госуслуга	13	change_services
+51	Can delete Госуслуга	13	delete_services
+52	Can view Госуслуга	13	view_services
+53	Can add Регион	14	add_region
+54	Can change Регион	14	change_region
+55	Can delete Регион	14	delete_region
+56	Can view Регион	14	view_region
+57	Can add Столбец диаграммы	15	add_diagramelement
+58	Can change Столбец диаграммы	15	change_diagramelement
+59	Can delete Столбец диаграммы	15	delete_diagramelement
+60	Can view Столбец диаграммы	15	view_diagramelement
+\.
+
+
+--
+-- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
+1	pbkdf2_sha256$216000$8IZGw5ohB223$iurBelyZsDvYX6RYCV2u+9Z5Ic3ykDSssRzyIHAl4sE=	2021-03-27 12:00:10.665374+03	t	temio				t	t	2021-03-27 11:59:58.262424+03
+\.
+
+
+--
+-- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.auth_user_groups (id, user_id, group_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: detail_ministries; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.detail_ministries (id, min_name) FROM stdin;
+1	ПФР
+2	ФССП России
+3	МВД России
+4	Росреестр
+5	ДСЗН
+6	Главное управление соцзащиты населения области
+7	Муниципальное бюджетное учреждение Центр социальных выплат города Белгорода
+8	ФНС России
+9	Управление образования администрации Белгородского района
+10	Администрация МО Вилегодский район
+11	Информационная библиотечная система
+\.
+
+
+--
+-- Data for Name: detail_ministries_services; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.detail_ministries_services (id, ministries_id, services_id) FROM stdin;
+1	1	1
+2	1	2
+3	1	3
+4	1	4
+5	2	5
+7	3	6
+8	3	7
+9	4	8
+10	4	9
+13	5	10
+14	5	11
+16	3	12
+17	6	13
+18	2	14
+20	3	15
+31	3	16
+41	7	17
+42	8	18
+45	9	19
+50	10	20
+51	8	21
+52	8	22
+56	1	23
+57	11	24
+\.
+
+
+--
+-- Data for Name: detail_problem; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.detail_problem (id, prob_name) FROM stdin;
+5	Технические неполадки с сайтом
+6	Низкое качество обслуживания, проблемы со связью
+7	Неудовлетворительная работа сотрудников ведомства
+24	Технические неполадки с сайтом
+25	Низкое качество обслуживания, проблемы со связью
+26	Технические неполадки с сайтом
+27	Низкое качество обслуживания, проблемы со связью
+28	Организация очередей
+29	Организация очередей
+30	Организация очередей
+31	Низкое качество обслуживания, проблемы со связью
+32	Организация очередей
+33	Низкое качество обслуживания, проблемы со связью
+34	Организация очередей
+35	Низкое качество обслуживания, проблемы со связью
+\.
+
+
+--
+-- Data for Name: detail_problem_ministries; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.detail_problem_ministries (id, problem_id, ministries_id) FROM stdin;
+1	5	1
+2	5	2
+3	5	3
+4	6	4
+5	6	3
+6	7	5
+7	7	3
+20	24	6
+21	24	2
+22	24	3
+23	26	6
+24	26	2
+25	26	3
+26	30	7
+27	30	8
+28	30	3
+29	31	9
+30	32	7
+31	32	8
+32	32	3
+33	33	10
+34	33	8
+35	34	8
+36	34	3
+37	35	1
+38	35	11
+\.
+
+
+--
+-- Data for Name: detail_region; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.detail_region (id, reg_name) FROM stdin;
+5	Владимирская область
+22	Белгородская область
+23	Архангельская область
+24	Амурская область
+\.
+
+
+--
+-- Data for Name: detail_region_problems; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.detail_region_problems (id, region_id, problem_id) FROM stdin;
+1	5	5
+2	5	6
+3	5	7
+10	22	30
+11	22	31
+12	23	32
+13	23	33
+14	24	34
+15	24	35
+\.
+
+
+--
+-- Data for Name: detail_services; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.detail_services (id, serv_name) FROM stdin;
+1	Включение сведений о юридическом лице в государственный реестр юридических лиц, осуществляющих деятельность по возврату просроченной задолженности в качестве основного вида деятельности
+2	Прием от граждан анкет в целях регистрации в системе индивидуального (персонифицированного) учета
+3	Рассмотрение заявления о распоряжении средствами (частью средств) материнского (семейного) капитала
+4	Выдача государственного сертификата на материнский (семейный) капитал
+5	Предоставление информации по находящимся на исполнении исполнительным производствам в отношении физического и юридического лица
+6	Выдача справок о наличии (отсутствии) судимости и (или) факта уголовного преследования либо о прекращении уголовного преследования
+7	Оформление и выдача паспортов гражданина Российской Федерации, удостоверяющих личность гражданина Российской Федерации за пределами территории Российской Федерации
+8	Предоставление сведений, содержащихся в Едином государственном реестре прав на недвижимое имущество и сделок с ним
+9	Предоставление сведений, внесенных в государственный кадастр недвижимости
+10	Ежемесячное пособие на ребенка гражданам, имеющим детей, во Владимирской области
+11	Предоставление мер социальной поддержки лицам, имеющим продолжительный стаж работы
+12	Предоставление адресно-справочной информации
+13	Назначение и выплата ежемесячного пособия по уходу за ребенком
+14	Предоставление информации по находящимся на исполнении исполнительным производствам в лица
+15	Оформление и выдача паспортов гражданина Российской Федерации
+16	Выдача справок о наличии (отсутствии) судимости
+17	Организация выплаты ежемесячного пособия на ребенка
+18	Предоставление сведений и документов, содержащихся в Едином государственном реестре
+19	Предоставление информации о текущей успеваемости учащегося, ведение электронного дневника
+20	Муниципальный жилищный контроль на территории Вилегодского муниципального района
+21	Предоставление сведений и документов, содержащихся в Едином государственном реестре юридических лиц и Едином государственном реестре индивидуальных предпринимателей
+22	Государственная регистрация юридических лиц, физических лиц в качестве индивидуальных предпринимателей и крестьянских (фермерских) хозяйств
+23	Информирование зарегистрированных лиц о состоянии их индивидуальных лицевых счетов в системе обязательного пенсионного страхования
+24	Предоставление доступа к справочно-поисковому аппарату библиотек,  базам данных
+\.
+
+
+--
+-- Data for Name: diagram_diagram; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.diagram_diagram (id) FROM stdin;
+1
+\.
+
+
+--
+-- Data for Name: diagram_diagram_columns; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.diagram_diagram_columns (id, diagram_id, diagramelement_id) FROM stdin;
+1	1	1
+2	1	2
+\.
+
+
+--
+-- Data for Name: diagram_diagramelement; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.diagram_diagramelement (id, value, problemcluster_id) FROM stdin;
+1	2	1
+2	1	2
+\.
+
+
+--
+-- Data for Name: diagram_ministry; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.diagram_ministry (id, min_name) FROM stdin;
+1	Минприроды Алтайского края
+2	АО «Корпорация «МСП»
+\.
+
+
+--
+-- Data for Name: diagram_ministry_problems; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.diagram_ministry_problems (id, ministry_id, problem_id) FROM stdin;
+1	1	3
+2	1	4
+3	2	2
+4	2	3
+5	2	4
+6	2	5
+\.
+
+
+--
+-- Data for Name: diagram_problem; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.diagram_problem (id, prob_name) FROM stdin;
+1	Жалоба на услугу
+2	Жалоба на сотрудника
+3	Жалоба на работу сайта
+4	Жалоба на большую очередь
+5	Жалоба на отказ в предоставлении услуги
+\.
+
+
+--
+-- Data for Name: diagram_problemcluster; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.diagram_problemcluster (id, "probClus_name") FROM stdin;
+1	Обслуживание
+2	Проблемы со связью
+\.
+
+
+--
+-- Data for Name: diagram_problemcluster_ministries; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.diagram_problemcluster_ministries (id, problemcluster_id, ministry_id) FROM stdin;
+1	1	1
+2	1	2
+3	2	2
+\.
+
+
+--
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
+1	2021-03-27 19:44:24.893057+03	4	Владимирская область	3		14	1
+2	2021-03-27 19:44:24.904784+03	3	Владимирская область	3		14	1
+3	2021-03-27 19:44:24.906742+03	2	Владимирская область	3		14	1
+4	2021-03-27 19:44:24.908182+03	1	Владимирская область	3		14	1
+5	2021-03-27 19:44:38.207307+03	4	Технические неполадки с сайтом	3		12	1
+6	2021-03-27 19:44:38.213242+03	3	Технические неполадки с сайтом	3		12	1
+7	2021-03-27 19:44:38.215238+03	2	Технические неполадки с сайтом	3		12	1
+8	2021-03-27 19:44:38.216705+03	1	Технические неполадки с сайтом	3		12	1
+9	2021-03-27 19:50:39.654542+03	6	Курганская область	3		14	1
+10	2021-03-27 19:51:32.134732+03	7	Курганская область	3		14	1
+11	2021-03-27 19:52:16.891419+03	10	Технические неполадки с сайтом	3		12	1
+12	2021-03-27 19:52:16.899242+03	9	Технические неполадки с сайтом	3		12	1
+13	2021-03-27 19:52:16.900382+03	8	Технические неполадки с сайтом	3		12	1
+14	2021-03-27 19:55:52.078369+03	10	Курганская область	3		14	1
+15	2021-03-27 19:55:52.08535+03	9	Курганская область	3		14	1
+16	2021-03-27 19:55:52.086654+03	8	Курганская область	3		14	1
+17	2021-03-27 19:56:02.626991+03	12	Технические неполадки с сайтом	3		12	1
+18	2021-03-27 19:56:02.66527+03	11	Технические неполадки с сайтом	3		12	1
+19	2021-03-27 20:02:32.423335+03	16	Технические неполадки с сайтом	3		12	1
+20	2021-03-27 20:02:32.429452+03	15	Технические неполадки с сайтом	3		12	1
+21	2021-03-27 20:02:32.431359+03	14	Технические неполадки с сайтом	3		12	1
+22	2021-03-27 20:02:32.43331+03	13	Технические неполадки с сайтом	3		12	1
+23	2021-03-27 20:02:52.131519+03	23	Низкое качество обслуживания, проблемы со связью	3		12	1
+24	2021-03-27 20:02:52.139154+03	22	Технические неполадки с сайтом	3		12	1
+25	2021-03-27 20:02:52.140531+03	21	Низкое качество обслуживания, проблемы со связью	3		12	1
+26	2021-03-27 20:02:52.142245+03	20	Технические неполадки с сайтом	3		12	1
+27	2021-03-27 20:02:52.144162+03	19	Низкое качество обслуживания, проблемы со связью	3		12	1
+28	2021-03-27 20:02:52.14521+03	18	Технические неполадки с сайтом	3		12	1
+29	2021-03-27 20:02:52.147138+03	17	Низкое качество обслуживания, проблемы со связью	3		12	1
+30	2021-03-27 20:03:03.105105+03	17	Курганская область	3		14	1
+31	2021-03-27 20:03:03.111966+03	16	Курганская область	3		14	1
+32	2021-03-27 20:03:03.113305+03	15	Курганская область	3		14	1
+33	2021-03-27 20:03:03.114956+03	14	Курганская область	3		14	1
+34	2021-03-27 20:03:03.117018+03	13	Курганская область	3		14	1
+35	2021-03-27 20:03:03.119945+03	12	Курганская область	3		14	1
+36	2021-03-27 20:03:03.1221+03	11	Курганская область	3		14	1
+37	2021-03-27 23:35:59.217935+03	19	Курганская область	3		14	1
+38	2021-03-27 23:35:59.225913+03	18	Курганская область	3		14	1
+39	2021-03-27 23:36:07.549649+03	21	Белгородская область	3		14	1
+40	2021-03-27 23:36:07.554554+03	20	Белгородская область	3		14	1
+41	2021-03-28 08:43:04.5735+03	1	Жалоба на услугу	1	[{"added": {}}]	9	1
+42	2021-03-28 08:43:12.66547+03	2	Жалоба на сотрудника	1	[{"added": {}}]	9	1
+43	2021-03-28 08:43:25.73177+03	3	Жалоба на работу сайта	1	[{"added": {}}]	9	1
+44	2021-03-28 08:44:38.978749+03	4	Жалоба на большую очередь	1	[{"added": {}}]	9	1
+45	2021-03-28 08:44:51.540133+03	1	Минприроды Алтайского края	1	[{"added": {}}]	8	1
+46	2021-03-28 08:50:08.193369+03	5	Жалоба на отказ в предоставлении услуги	1	[{"added": {}}]	9	1
+47	2021-03-28 08:50:11.346254+03	2	АО «Корпорация «МСП»	1	[{"added": {}}]	8	1
+48	2021-03-28 08:55:07.517844+03	1	Обслуживание	1	[{"added": {}}]	10	1
+49	2021-03-28 08:56:34.634526+03	2	Проблемы со связью	1	[{"added": {}}]	10	1
+50	2021-03-28 08:58:21.045332+03	1	Обслуживание	1	[{"added": {}}]	15	1
+51	2021-03-28 08:58:36.602688+03	2	Проблемы со связью	1	[{"added": {}}]	15	1
+52	2021-03-28 08:58:43.34374+03	1	Диграмма	1	[{"added": {}}]	7	1
+\.
+
+
+--
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.django_content_type (id, app_label, model) FROM stdin;
+1	admin	logentry
+2	auth	permission
+3	auth	group
+4	auth	user
+5	contenttypes	contenttype
+6	sessions	session
+7	diagram	diagram
+8	diagram	ministry
+9	diagram	problem
+10	diagram	problemcluster
+11	detail	ministries
+12	detail	problem
+13	detail	services
+14	detail	region
+15	diagram	diagramelement
+\.
+
+
+--
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.django_migrations (id, app, name, applied) FROM stdin;
+1	contenttypes	0001_initial	2021-03-27 11:58:25.03004+03
+2	auth	0001_initial	2021-03-27 11:58:25.131629+03
+3	admin	0001_initial	2021-03-27 11:58:25.254297+03
+4	admin	0002_logentry_remove_auto_add	2021-03-27 11:58:25.281297+03
+5	admin	0003_logentry_add_action_flag_choices	2021-03-27 11:58:25.297463+03
+6	contenttypes	0002_remove_content_type_name	2021-03-27 11:58:25.338353+03
+7	auth	0002_alter_permission_name_max_length	2021-03-27 11:58:25.365283+03
+8	auth	0003_alter_user_email_max_length	2021-03-27 11:58:25.384231+03
+9	auth	0004_alter_user_username_opts	2021-03-27 11:58:25.402183+03
+10	auth	0005_alter_user_last_login_null	2021-03-27 11:58:25.422129+03
+11	auth	0006_require_contenttypes_0002	2021-03-27 11:58:25.427116+03
+12	auth	0007_alter_validators_add_error_messages	2021-03-27 11:58:25.44108+03
+13	auth	0008_alter_user_username_max_length	2021-03-27 11:58:25.476991+03
+14	auth	0009_alter_user_last_name_max_length	2021-03-27 11:58:25.496014+03
+15	auth	0010_alter_group_name_max_length	2021-03-27 11:58:25.519948+03
+16	auth	0011_update_proxy_permissions	2021-03-27 11:58:25.536776+03
+17	auth	0012_alter_user_first_name_max_length	2021-03-27 11:58:25.554728+03
+18	detail	0001_initial	2021-03-27 11:58:25.63858+03
+19	diagram	0001_initial	2021-03-27 11:58:25.708511+03
+20	diagram	0002_region	2021-03-27 11:58:25.724983+03
+21	diagram	0003_auto_20210325_2322	2021-03-27 11:58:25.783923+03
+22	diagram	0004_auto_20210326_0019	2021-03-27 11:58:25.901388+03
+23	diagram	0005_auto_20210326_0027	2021-03-27 11:58:25.972212+03
+24	diagram	0006_auto_20210326_0103	2021-03-27 11:58:26.016944+03
+25	diagram	0007_auto_20210326_0111	2021-03-27 11:58:26.039709+03
+26	diagram	0008_problemdetailed	2021-03-27 11:58:26.067636+03
+27	diagram	0009_delete_problemdetailed	2021-03-27 11:58:26.07661+03
+28	sessions	0001_initial	2021-03-27 11:58:26.103541+03
+29	detail	0002_auto_20210327_2335	2021-03-27 23:35:21.017446+03
+30	diagram	0010_auto_20210328_0838	2021-03-28 08:38:17.267226+03
+\.
+
+
+--
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
+0kl27y9c3bhx8dc2e8vfovptlutl3bnx	.eJxVjMEOwiAQRP-FsyELBQSP3v0GsrCLVA1NSnsy_rtt0oPOcd6beYuI61Lj2nmOI4mLUOL02yXMT247oAe2-yTz1JZ5THJX5EG7vE3Er-vh_h1U7HVbF4SzU2bg7J0jGsDn5DUbX2CLx8JJK2sJMDgF1iIFjaBCAsM5MYjPF9kJN7A:1lQ4ni:piUGTo2E2YuOHwDfkFkO6k5UxUlW25wlXLc7Ubkqlcw	2021-04-10 12:00:10.670372+03
+\.
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.auth_group_id_seq', 1, false);
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 1, false);
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 60, true);
+
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.auth_user_groups_id_seq', 1, false);
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.auth_user_id_seq', 1, true);
+
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.auth_user_user_permissions_id_seq', 1, false);
+
+
+--
+-- Name: detail_ministries_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.detail_ministries_id_seq', 11, true);
+
+
+--
+-- Name: detail_ministries_services_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.detail_ministries_services_id_seq', 57, true);
+
+
+--
+-- Name: detail_problem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.detail_problem_id_seq', 35, true);
+
+
+--
+-- Name: detail_problem_ministries_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.detail_problem_ministries_id_seq', 38, true);
+
+
+--
+-- Name: detail_region_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.detail_region_id_seq', 24, true);
+
+
+--
+-- Name: detail_region_problems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.detail_region_problems_id_seq', 15, true);
+
+
+--
+-- Name: detail_services_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.detail_services_id_seq', 24, true);
+
+
+--
+-- Name: diagram_diagram_columns_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.diagram_diagram_columns_id_seq', 2, true);
+
+
+--
+-- Name: diagram_diagram_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.diagram_diagram_id_seq', 1, true);
+
+
+--
+-- Name: diagram_diagramelement_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.diagram_diagramelement_id_seq', 2, true);
+
+
+--
+-- Name: diagram_ministry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.diagram_ministry_id_seq', 2, true);
+
+
+--
+-- Name: diagram_ministry_problems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.diagram_ministry_problems_id_seq', 6, true);
+
+
+--
+-- Name: diagram_problem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.diagram_problem_id_seq', 5, true);
+
+
+--
+-- Name: diagram_problemcluster_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.diagram_problemcluster_id_seq', 2, true);
+
+
+--
+-- Name: diagram_problemcluster_ministries_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.diagram_problemcluster_ministries_id_seq', 3, true);
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 52, true);
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 15, true);
+
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 30, true);
+
+
+--
+-- Name: auth_group auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_name_key UNIQUE (name);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_permission_id_0cd325b0_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_permission_id_0cd325b0_uniq UNIQUE (group_id, permission_id);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_codename_01ab375a_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_codename_01ab375a_uniq UNIQUE (content_type_id, codename);
+
+
+--
+-- Name: auth_permission auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_group_id_94350c0c_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_group_id_94350c0c_uniq UNIQUE (user_id, group_id);
+
+
+--
+-- Name: auth_user auth_user_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user
+    ADD CONSTRAINT auth_user_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_permission_id_14a6b632_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_permission_id_14a6b632_uniq UNIQUE (user_id, permission_id);
+
+
+--
+-- Name: auth_user auth_user_username_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user
+    ADD CONSTRAINT auth_user_username_key UNIQUE (username);
+
+
+--
+-- Name: detail_ministries detail_ministries_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detail_ministries
+    ADD CONSTRAINT detail_ministries_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: detail_ministries_services detail_ministries_servic_ministries_id_services_i_82405a04_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detail_ministries_services
+    ADD CONSTRAINT detail_ministries_servic_ministries_id_services_i_82405a04_uniq UNIQUE (ministries_id, services_id);
+
+
+--
+-- Name: detail_ministries_services detail_ministries_services_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detail_ministries_services
+    ADD CONSTRAINT detail_ministries_services_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: detail_problem_ministries detail_problem_ministrie_problem_id_ministries_id_e8b25db6_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detail_problem_ministries
+    ADD CONSTRAINT detail_problem_ministrie_problem_id_ministries_id_e8b25db6_uniq UNIQUE (problem_id, ministries_id);
+
+
+--
+-- Name: detail_problem_ministries detail_problem_ministries_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detail_problem_ministries
+    ADD CONSTRAINT detail_problem_ministries_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: detail_problem detail_problem_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detail_problem
+    ADD CONSTRAINT detail_problem_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: detail_region detail_region_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detail_region
+    ADD CONSTRAINT detail_region_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: detail_region_problems detail_region_problems_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detail_region_problems
+    ADD CONSTRAINT detail_region_problems_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: detail_region_problems detail_region_problems_region_id_problem_id_84bf44eb_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detail_region_problems
+    ADD CONSTRAINT detail_region_problems_region_id_problem_id_84bf44eb_uniq UNIQUE (region_id, problem_id);
+
+
+--
+-- Name: detail_services detail_services_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detail_services
+    ADD CONSTRAINT detail_services_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: diagram_diagram_columns diagram_diagram_columns_diagram_id_diagramelemen_c0abb255_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_diagram_columns
+    ADD CONSTRAINT diagram_diagram_columns_diagram_id_diagramelemen_c0abb255_uniq UNIQUE (diagram_id, diagramelement_id);
+
+
+--
+-- Name: diagram_diagram_columns diagram_diagram_columns_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_diagram_columns
+    ADD CONSTRAINT diagram_diagram_columns_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: diagram_diagram diagram_diagram_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_diagram
+    ADD CONSTRAINT diagram_diagram_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: diagram_diagramelement diagram_diagramelement_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_diagramelement
+    ADD CONSTRAINT diagram_diagramelement_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: diagram_ministry diagram_ministry_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_ministry
+    ADD CONSTRAINT diagram_ministry_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: diagram_ministry_problems diagram_ministry_problems_ministry_id_problem_id_bab00c4e_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_ministry_problems
+    ADD CONSTRAINT diagram_ministry_problems_ministry_id_problem_id_bab00c4e_uniq UNIQUE (ministry_id, problem_id);
+
+
+--
+-- Name: diagram_ministry_problems diagram_ministry_problems_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_ministry_problems
+    ADD CONSTRAINT diagram_ministry_problems_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: diagram_problem diagram_problem_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_problem
+    ADD CONSTRAINT diagram_problem_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: diagram_problemcluster_ministries diagram_problemcluster_m_problemcluster_id_minist_8167d66b_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_problemcluster_ministries
+    ADD CONSTRAINT diagram_problemcluster_m_problemcluster_id_minist_8167d66b_uniq UNIQUE (problemcluster_id, ministry_id);
+
+
+--
+-- Name: diagram_problemcluster_ministries diagram_problemcluster_ministries_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_problemcluster_ministries
+    ADD CONSTRAINT diagram_problemcluster_ministries_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: diagram_problemcluster diagram_problemcluster_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_problemcluster
+    ADD CONSTRAINT diagram_problemcluster_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_admin_log django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_content_type django_content_type_app_label_model_76bd3d3b_uniq; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_app_label_model_76bd3d3b_uniq UNIQUE (app_label, model);
+
+
+--
+-- Name: django_content_type django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_migrations django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_migrations
+    ADD CONSTRAINT django_migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_session django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_session
+    ADD CONSTRAINT django_session_pkey PRIMARY KEY (session_key);
+
+
+--
+-- Name: auth_group_name_a6ea08ec_like; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_group_name_a6ea08ec_like ON public.auth_group USING btree (name varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions_group_id_b120cbf9; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_group_permissions_group_id_b120cbf9 ON public.auth_group_permissions USING btree (group_id);
+
+
+--
+-- Name: auth_group_permissions_permission_id_84c5c92e; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_group_permissions_permission_id_84c5c92e ON public.auth_group_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_permission_content_type_id_2f476e4b; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_permission_content_type_id_2f476e4b ON public.auth_permission USING btree (content_type_id);
+
+
+--
+-- Name: auth_user_groups_group_id_97559544; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_user_groups_group_id_97559544 ON public.auth_user_groups USING btree (group_id);
+
+
+--
+-- Name: auth_user_groups_user_id_6a12ed8b; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_user_groups_user_id_6a12ed8b ON public.auth_user_groups USING btree (user_id);
+
+
+--
+-- Name: auth_user_user_permissions_permission_id_1fbb5f2c; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_user_user_permissions_permission_id_1fbb5f2c ON public.auth_user_user_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_user_user_permissions_user_id_a95ead1b; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_user_user_permissions_user_id_a95ead1b ON public.auth_user_user_permissions USING btree (user_id);
+
+
+--
+-- Name: auth_user_username_6821ab7c_like; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX auth_user_username_6821ab7c_like ON public.auth_user USING btree (username varchar_pattern_ops);
+
+
+--
+-- Name: detail_ministries_services_ministries_id_3f04b104; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX detail_ministries_services_ministries_id_3f04b104 ON public.detail_ministries_services USING btree (ministries_id);
+
+
+--
+-- Name: detail_ministries_services_services_id_01d92679; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX detail_ministries_services_services_id_01d92679 ON public.detail_ministries_services USING btree (services_id);
+
+
+--
+-- Name: detail_problem_ministries_ministries_id_44c6f7cb; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX detail_problem_ministries_ministries_id_44c6f7cb ON public.detail_problem_ministries USING btree (ministries_id);
+
+
+--
+-- Name: detail_problem_ministries_problem_id_853db1c7; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX detail_problem_ministries_problem_id_853db1c7 ON public.detail_problem_ministries USING btree (problem_id);
+
+
+--
+-- Name: detail_region_problems_problem_id_bd3dba60; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX detail_region_problems_problem_id_bd3dba60 ON public.detail_region_problems USING btree (problem_id);
+
+
+--
+-- Name: detail_region_problems_region_id_d2849007; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX detail_region_problems_region_id_d2849007 ON public.detail_region_problems USING btree (region_id);
+
+
+--
+-- Name: diagram_diagram_columns_diagram_id_44c71573; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX diagram_diagram_columns_diagram_id_44c71573 ON public.diagram_diagram_columns USING btree (diagram_id);
+
+
+--
+-- Name: diagram_diagram_columns_diagramelement_id_6a1b2804; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX diagram_diagram_columns_diagramelement_id_6a1b2804 ON public.diagram_diagram_columns USING btree (diagramelement_id);
+
+
+--
+-- Name: diagram_diagramelement_problemcluster_id_c8d6f813; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX diagram_diagramelement_problemcluster_id_c8d6f813 ON public.diagram_diagramelement USING btree (problemcluster_id);
+
+
+--
+-- Name: diagram_ministry_problems_ministry_id_ef489e9d; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX diagram_ministry_problems_ministry_id_ef489e9d ON public.diagram_ministry_problems USING btree (ministry_id);
+
+
+--
+-- Name: diagram_ministry_problems_problem_id_c87d1052; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX diagram_ministry_problems_problem_id_c87d1052 ON public.diagram_ministry_problems USING btree (problem_id);
+
+
+--
+-- Name: diagram_problemcluster_ministries_ministry_id_1d2f6927; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX diagram_problemcluster_ministries_ministry_id_1d2f6927 ON public.diagram_problemcluster_ministries USING btree (ministry_id);
+
+
+--
+-- Name: diagram_problemcluster_ministries_problemcluster_id_33985260; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX diagram_problemcluster_ministries_problemcluster_id_33985260 ON public.diagram_problemcluster_ministries USING btree (problemcluster_id);
+
+
+--
+-- Name: django_admin_log_content_type_id_c4bce8eb; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX django_admin_log_content_type_id_c4bce8eb ON public.django_admin_log USING btree (content_type_id);
+
+
+--
+-- Name: django_admin_log_user_id_c564eba6; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX django_admin_log_user_id_c564eba6 ON public.django_admin_log USING btree (user_id);
+
+
+--
+-- Name: django_session_expire_date_a5c62663; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX django_session_expire_date_a5c62663 ON public.django_session USING btree (expire_date);
+
+
+--
+-- Name: django_session_session_key_c0390e0f_like; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX django_session_session_key_c0390e0f_like ON public.django_session USING btree (session_key varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissio_permission_id_84c5c92e_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissio_permission_id_84c5c92e_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_b120cbf9_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_b120cbf9_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_2f476e4b_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_2f476e4b_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_group_id_97559544_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_group_id_97559544_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_6a12ed8b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_6a12ed8b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: detail_ministries_services detail_ministries_se_ministries_id_3f04b104_fk_detail_mi; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detail_ministries_services
+    ADD CONSTRAINT detail_ministries_se_ministries_id_3f04b104_fk_detail_mi FOREIGN KEY (ministries_id) REFERENCES public.detail_ministries(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: detail_ministries_services detail_ministries_se_services_id_01d92679_fk_detail_se; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detail_ministries_services
+    ADD CONSTRAINT detail_ministries_se_services_id_01d92679_fk_detail_se FOREIGN KEY (services_id) REFERENCES public.detail_services(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: detail_problem_ministries detail_problem_minis_ministries_id_44c6f7cb_fk_detail_mi; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detail_problem_ministries
+    ADD CONSTRAINT detail_problem_minis_ministries_id_44c6f7cb_fk_detail_mi FOREIGN KEY (ministries_id) REFERENCES public.detail_ministries(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: detail_problem_ministries detail_problem_minis_problem_id_853db1c7_fk_detail_pr; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detail_problem_ministries
+    ADD CONSTRAINT detail_problem_minis_problem_id_853db1c7_fk_detail_pr FOREIGN KEY (problem_id) REFERENCES public.detail_problem(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: detail_region_problems detail_region_problems_problem_id_bd3dba60_fk_detail_problem_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detail_region_problems
+    ADD CONSTRAINT detail_region_problems_problem_id_bd3dba60_fk_detail_problem_id FOREIGN KEY (problem_id) REFERENCES public.detail_problem(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: detail_region_problems detail_region_problems_region_id_d2849007_fk_detail_region_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detail_region_problems
+    ADD CONSTRAINT detail_region_problems_region_id_d2849007_fk_detail_region_id FOREIGN KEY (region_id) REFERENCES public.detail_region(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: diagram_diagram_columns diagram_diagram_colu_diagram_id_44c71573_fk_diagram_d; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_diagram_columns
+    ADD CONSTRAINT diagram_diagram_colu_diagram_id_44c71573_fk_diagram_d FOREIGN KEY (diagram_id) REFERENCES public.diagram_diagram(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: diagram_diagram_columns diagram_diagram_colu_diagramelement_id_6a1b2804_fk_diagram_d; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_diagram_columns
+    ADD CONSTRAINT diagram_diagram_colu_diagramelement_id_6a1b2804_fk_diagram_d FOREIGN KEY (diagramelement_id) REFERENCES public.diagram_diagramelement(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: diagram_diagramelement diagram_diagrameleme_problemcluster_id_c8d6f813_fk_diagram_p; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_diagramelement
+    ADD CONSTRAINT diagram_diagrameleme_problemcluster_id_c8d6f813_fk_diagram_p FOREIGN KEY (problemcluster_id) REFERENCES public.diagram_problemcluster(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: diagram_ministry_problems diagram_ministry_pro_ministry_id_ef489e9d_fk_diagram_m; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_ministry_problems
+    ADD CONSTRAINT diagram_ministry_pro_ministry_id_ef489e9d_fk_diagram_m FOREIGN KEY (ministry_id) REFERENCES public.diagram_ministry(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: diagram_ministry_problems diagram_ministry_pro_problem_id_c87d1052_fk_diagram_p; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_ministry_problems
+    ADD CONSTRAINT diagram_ministry_pro_problem_id_c87d1052_fk_diagram_p FOREIGN KEY (problem_id) REFERENCES public.diagram_problem(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: diagram_problemcluster_ministries diagram_problemclust_ministry_id_1d2f6927_fk_diagram_m; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_problemcluster_ministries
+    ADD CONSTRAINT diagram_problemclust_ministry_id_1d2f6927_fk_diagram_m FOREIGN KEY (ministry_id) REFERENCES public.diagram_ministry(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: diagram_problemcluster_ministries diagram_problemclust_problemcluster_id_33985260_fk_diagram_p; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.diagram_problemcluster_ministries
+    ADD CONSTRAINT diagram_problemclust_problemcluster_id_33985260_fk_diagram_p FOREIGN KEY (problemcluster_id) REFERENCES public.diagram_problemcluster(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_content_type_id_c4bce8eb_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_content_type_id_c4bce8eb_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_user_id_c564eba6_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_user_id_c564eba6_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
